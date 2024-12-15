@@ -1,0 +1,105 @@
+{% extends 'base/template.html' %}
+{% load static %}
+
+{% block page_title %}{{ post.title }}{% endblock %}
+
+{% block body %}
+    <div class="single_post">
+        <div class="container-fluid">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                        <div class="post_img">
+                            <img src="{{ post.image.url }}" alt="">
+                        </div>
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
+                <div class="posts_meta text-center">
+                    <span><i class="fa fa-comment-o"></i> {{ post.comments.count }} نظر</span>
+                    <a href="{% url 'News:category' post.category.id %}"><span><i class="fa fa-archive"></i>{{ post.category }}</span></a>
+                    <span><i class="fa fa-calendar"></i>{{ post.create_date|date }}</span>
+                </div>
+                <div class="post_content">
+                    <h4>{{ post.title }}</h4>
+                    <p>{{ post.content }}</p>
+                </div>
+                <div class="comments_form">
+                    <h5>دیدگاه شما </h5>
+                    <form id="frm" action="{% url 'News:add_comment' %}" method="post">
+                        {% csrf_token %}
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="author_name" id="author_name" placeholder="نام شما" required>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="email" class="form-control"  name="author_email" id="author_email" placeholder="ایمیل" required>
+                            </div>
+                            <div class="col-md-12">
+                                <textarea class="form-control" name="content" id="content" placeholder="نظر شما ..." required></textarea>
+                            </div>
+                            <input type="hidden" value="{{ post.id }}" name="post_id">
+                            <div class="col-md-12">
+                                <div class="text-left">
+                                    <input type="submit" class="btn btn-primary" id="btn_submit" value="ثبت نظر">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+
+                <div class="comments_section mt-5 comments_form">
+                    <h5>نظرات کاربران</h5>
+                    {% for comment in comments %}
+                        <div class="comment"
+                             style="margin-bottom: 30px; padding: 20px; border: 1px solid #ddd; border-radius: 5px;">
+                            <strong id="comment_author_name">{{ comment.auther_name }}</strong>
+                            <p id="comment_text">{{ comment.comment }}</p>
+                        </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'js/jQuery.js' %}"></script>
+    <script type="text/javascript">
+        var frm = $('#frm');
+        $(document).ready(function(){
+            frm.submit(function () {
+                var form_data = frm.serialize();
+                $.ajax({
+                    type: frm.attr('method'),
+                    url: frm.attr('action'),
+                    data: form_data,
+                    success: function (data) {
+                        var newComment = `<div class="comment" style="margin-bottom: 30px; padding: 20px; border: 1px solid #ddd; border-radius: 5px;">
+                            <strong id="comment_author_name">${data.auther_name}</strong>
+                            <p id="comment_text">${data.comment}</p>
+                            </div>`;
+                        $('.comments_section').append(newComment)
+                        frm.trigger('reset');
+                        var lastComment = $('.comments_section .comment').first();
+                        lastComment[0].scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'center'
+                        });
+                    },
+                    error: function(data){
+                        alert('st went wrong');
+                    }
+                });
+                return false;
+            });
+        });
+    </script>
+
+{% endblock %}

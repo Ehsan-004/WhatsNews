@@ -1,0 +1,65 @@
+{% extends 'base/template.html' %}
+{% load static %}
+{% block page_title %}همه خبرها{% endblock %}
+
+{% block body %}
+<div class="latest-posts">
+    <div class="container-fluid">
+        <div class="blog-title-span">
+            <span class="title">همه خبرها</span>
+        </div>
+
+        {% for article in articles %}
+        <div class="col-md-3">
+            <div class="post-box">
+                <a href="{% url 'News:single' article.id %}">
+                    <figure>
+                        <img src="{{ article.image.url }}" alt="">
+                        <figcaption class="meta-fig">
+                            <span><i class="fa fa-clock-o"></i>{{ article.create_date|date }}</span>&nbsp;
+                            <span><i class="fa fa-comment-o"></i> 12</span>
+                        </figcaption>
+                        <figcaption class="view">
+                            {% for tag in article.tags.all %}
+                            <span>{{ tag.name }}</span>
+                            {% endfor %}
+                        </figcaption>
+                    </figure>
+                    <div class="text-p">
+                        <h5>{{ article.title }}</h5>
+                        <p>{{ article.short_description }}</p>
+                        <div class="text-rigt">
+                            <a href="{% url 'News:single' article.id %}">ادامه ...</a></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+
+        <div class="col-md-12 text-center">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    {% if page_obj.has_previous %}
+                        <li class="page-item"><a class="page-link" href="?page=1">&laquo; اولین</a></li>
+                        <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">قبلی</a></li>
+                    {% endif %}
+{#                    <span class="current page-item">{{ page_obj.number }} از {{ page_obj.paginator.num_pages }}. </span>#}
+                    {% for i in page_obj.paginator.page_range %}
+                        {% if page_obj.number == i %}
+                            <li class="page-item"><span class="page-itme">{{ i }}</span></li>
+                        {% else %}
+                            <li class="page-itme"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if page_obj.has_next %}
+                        <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">بعدی</a></li>
+                        <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">آخرین &raquo;</a></li>
+                    {% endif %}
+
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+{% endblock %}

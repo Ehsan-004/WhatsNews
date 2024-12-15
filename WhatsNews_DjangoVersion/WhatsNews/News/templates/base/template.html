@@ -1,0 +1,141 @@
+{% load static %}
+
+<html lang="fa">
+<head>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.theme.default.css' %}">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <title>{% block page_title %}title{% endblock %}</title>
+</head>
+<body>
+
+<!-- header -->
+<div class="top-bar">
+    <div class="container-fluid">
+        <div class="col-md-6">
+            <div class="search-btn">
+                <form action="{% url 'News:search' %}" method="get">
+                    <span><i class="fa fa-search"></i></span>
+                    <input type="text" name="query">
+                    <input type="submit" class="fa fa-search" value="جستجو">
+                </form>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="top-cat-box">
+                <div class="col-md-12">
+                    <div class="menu">
+                        <ul>
+                            <li><a href="{% url 'News:about_us' %}">تماس با ما</a></li>
+                            <li><a href="{% url 'News:contact_us' %}">درباره ما</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- <div class="col-md-3">
+                   <div class="show-cat">
+                       <span>
+                           دسته ها
+                           <i class="fa fa-bars"></i>
+                       </span>
+                   </div>
+                   </div> -->
+            </div>
+        </div>
+    </div>
+</div>
+<div class="main-header">
+    <div class="container-fluid">
+        <div class="col-md-10">
+            <div class="main-menu">
+                <ul>
+                    <li><a href="{% url 'News:index' %}">خانه</a></li>
+                    <li><a href="{% url 'News:all' %}">اتاق خبر</a></li>
+                    <li><a href="{% url 'News:category' 5 %}">اخبار اقتصادی</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="social-box">
+                <ul>
+                    <li><a href="https://github.com/Ehsan-004"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="https://github.com/Ehsan-004"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="https://github.com/Ehsan-004"><i class="fa fa-instagram"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end header -->
+
+{% block body %}
+{% endblock %}
+
+<!-- footer -->
+<div class="clear-fix"></div>
+<div class="footer">
+    <div class="container-fluid">
+        <div class="col-md-5">
+            <div class="footer-box">
+                <span class="title">مجله seo90</span>
+                <p>متن ساختگی با تولید سادگی نامفهوم تولید سادگی از صنعت متن ساختگی با تولید سادگی نامفهوم تولید
+                    سادگی از صنعت متن ساختگی با تولید سادگی نامفهوم تولید سادگی از صنعت متن ساختگی با تولید سادگی از
+                    صنعت متن ساختگی با تولید سادگی نامفهوم تولید سادگی از صنعت متن ساختگی با تولید سادگی نامفهوم
+                    تولید سادگی از صنعت متن ساختگی بام تولید سادگی از صنعت متن ساختگی با تولید سادگی نامفهوم تولید
+                    سادگی از صنعت متن ساختگی با تولید سادگی نامفهوم تولید سادگی از صنعت متن سادگی نامفهوم تولید
+                    سادگی از صنعت
+                </p>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="footer-box">
+                <span class="title">دسترسی سریع</span>
+                <ul>
+                    <li><a href="{% url 'News:index' %}">خانه</a></li>
+                    <li><a href="{% url 'News:all' %}">اتاق خبر</a></li>
+                    <li><a href="{% url 'News:category' 5 %}">اخبار اقتصادی</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="footer-box">
+                <span class="title">درباره ما</span>
+                <ul>
+                    <li><a href="{% url 'News:about_us' %}">تماس با ما</a></li>
+                    <li><a href="{% url 'News:contact_us' %}">درباره ما</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="footer-box contact-box">
+                <span class="title">تماس با ما</span>
+                <p><i class="fa fa-phone"></i> <a href="https://github.com/Ehsan-004">صفحه من</a></p>
+            </div>
+        </div>
+        <div class="clear-fix"></div>
+    </div>
+</div>
+<div class="end-wrapper">
+    <div class="container-fluid">
+        <div class="col-md-6">
+            <div class="copy-r">
+                <p>&copy; تمامی حقوق متعلق به سئو 90 و <a href="https://github.com/Ehsan-004">Ehsan-2004 </a> می باشد</p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="creator text-left">
+                <p>طراحی سایت ، سئو 90</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end footer -->
+<div class="bg"></div>
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/bootstrap.js' %}"></script>
+<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'js/index.js' %}"></script>
+{% block scripts %}{% endblock %}
+</body>
+</html>

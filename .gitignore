@@ -2,8 +2,12 @@
 __pycache__/
 *.py[cod]
 *$py.class
-
+venv/
+**/venv/
 # C extensions
+.idea/
+**/.idea/
+.idea
 *.so
 
 # Distribution / packaging
