@@ -1,49 +1,143 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+<!DOCTYPE html>
+<html>
 <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>@ViewData["Title"] - WhatsNews</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
-    <link rel="stylesheet" href="~/WhatsNews.styles.css" asp-append-version="true"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/LocalStyles/css/bootstrap.css">
+    <link rel="stylesheet" href="~/LocalStyles/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/LocalStyles/css/owl.carousel.css">
+    <link rel="stylesheet" href="~/LocalStyles/css/owl.theme.default.css">
+    <link rel="stylesheet" href="~/style.css">
 </head>
 <body>
-<header>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-        <div class="container-fluid">
-            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">WhatsNews</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                <ul class="navbar-nav flex-grow-1">
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                    </li>
+
+<div class="top-bar">
+    <div class="container-fluid">
+        <div class="col-md-6">
+            <div class="search-btn">
+                <span><i class="fa fa-search"></i></span>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="top-cat-box">
+                <div class="col-md-12">
+                    <div class="menu">
+                        <ul>
+                            <li><a href="#">تماس با ما</a></li>
+                            <li><a href="#">درباره ما</a></li>
+                            <li><a href="#">مقالات</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- <div class="col-md-3">
+                    <div class="show-cat">
+                        <span>
+                            دسته ها
+                            <i class="fa fa-bars"></i>
+                        </span>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>
+<div class="main-header">
+    <div class="container-fluid">
+        <div class="col-md-10">
+            <div class="main-menu">
+                <ul>
+                    <li><a href="#">اتاق خبر</a></li>
+                    <li><a href="#">اقتصادی</a></li>
+                    <li><a href="#">انجمن</a></li>
+                    <li><a href="#">گروه رسانه ای</a></li>
                 </ul>
             </div>
         </div>
-    </nav>
-</header>
-<div class="container">
-    <main role="main" class="pb-3">
-        @RenderBody()
-    </main>
-</div>
-
-<footer class="border-top footer text-muted">
-    <div class="container">
-        &copy; 2024 - WhatsNews - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        <div class="col-md-2">
+            <div class="social-box">
+                <ul>
+                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                </ul>
+            </div>
+        </div>
     </div>
-</footer>
-<script src="~/lib/jquery/dist/jquery.min.js"></script>
-<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="~/js/site.js" asp-append-version="true"></script>
-@await RenderSectionAsync("Scripts", required: false)
-</body>
-</html>
+</div>
+@* <div class="clear-fix"></div> *@
+
+@RenderBody()        
+<div class="clear-fix"></div>
+<div class="footer">
+    <div class="container-fluid">
+        <div class="col-md-5">
+            <div class="footer-box">
+                <span class="title">مجله seo90</span>
+                <p>متن ساختگی با تولید سادگی نامفهوم تولید سادگی از صنعت متن ساختگی با تولید سادگی نامفهوم تولید
+                    سادگی از صنعت متن ساختگی با تولید سادگی نامفهوم تولید سادگی از صنعت متن ساختگی با تولید سادگی از
+                    صنعت متن ساختگی با تولید سادگی نامفهوم تولید سادگی از صنعت متن ساختگی با تولید سادگی نامفهوم
+                    تولید سادگی از صنعت متن ساختگی بام تولید سادگی از صنعت متن ساختگی با تولید سادگی نامفهوم تولید
+                    سادگی از صنعت متن ساختگی با تولید سادگی نامفهوم تولید سادگی از صنعت متن سادگی نامفهوم تولید
+                    سادگی از صنعت
+                </p>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="footer-box">
+                <span class="title">دسترسی سریع</span>
+                <ul>
+                    <li><a href="#">موضوعی</a></li>
+                    <li><a href="#">قوانین</a></li>
+                    <li><a href="#">نشریات</a></li>
+                    <li><a href="#">موضوعی</a></li>
+                    <li><a href="#">خبرنامه</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="footer-box">
+                <span class="title">موضوعی</span>
+                <ul>
+                    <li><a href="#">موضوعی</a></li>
+                    <li><a href="#">قوانین</a></li>
+                    <li><a href="#">نشریات</a></li>
+                    <li><a href="#">موضوعی</a></li>
+                    <li><a href="#">خبرنامه</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="footer-box contact-box">
+                <span class="title">تماس با ما</span>
+                <p><i class="fa fa-phone"></i> 09028468446</p>
+                <p><i class="fa fa-phone"></i> 09336636892</p>
+                <p><i class="fa fa-envelope-o"></i> info@seo90.ir</p>
+                <p><i class="fa fa-map-marker"></i> تبریز </p>
+            </div>
+        </div>
+        <div class="clear-fix"></div>
+    </div>
+</div>
+<div class="end-wrapper">
+    <div class="container-fluid">
+        <div class="col-md-6">
+            <div class="copy-r">
+                <p>&copy; تمامی حقوق متعلق به سئو 90 می باشد</p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="creator text-left">
+                <p>طراحی سایت ، سئو 90</p>
+            </div>
+        </div>
+    </div>
+    
+</div>
+<div class="bg"></div>
+<script src="~/LocalStyles/js/jquery.js"></script>
+<script src="~/LocalStyles/js/bootstrap.js"></script>
+<script src="~/LocalStyles/js/owl.carousel.min.js"></script>
+<script src="~/LocalStyles/js/index.js"></script>
+</body></html>

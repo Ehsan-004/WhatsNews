@@ -1,0 +1,100 @@
+﻿@model IEnumerable<WhatsNews.Models.Article>
+
+@{
+    ViewBag.Title = "title";
+}
+
+<div class="content-wrap">
+    <div class="main">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-8 p-r-0 title-margin-right">
+                    <div class="page-header">
+                        <div class="page-title">
+                            <h1>Hello, <span>Welcome Here</span></h1>
+                        </div>
+                    </div>
+                </div>
+                <!-- /# column -->
+                <div class="col-lg-4 p-l-0 title-margin-left">
+                    <div class="page-header">
+                        <div class="page-title">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                                <li class="breadcrumb-item active">Table-Jsgrid</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                <!-- /# column -->
+            </div>
+
+
+            <div class="table-wrapper">
+                <table id="resizable-table" class="responsive-table resizable">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Title</th>
+                            <th>Create Date</th>
+                            <th>Views</th>
+                            <th>Type</th>
+                            <th>Category</th>
+                            <th>Image Path</th>
+                            <th><a class="btn btn-secondary" asp-area="Admin" asp-controller="Articles" asp-action="Create">Create</a></th>
+                            @* <th><a href="Categories/Create/">Create</a></th> *@
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.Any())
+                        {
+                            foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.Id</td>
+                                    <td>@item.Title</td>
+                                    <td>@item.PublishDate</td>
+                                    <td>@item.Views</td>
+                                    <td>@item.AType</td>
+                                    @if (item.Category != null)
+                                    {
+                                        <td>@item.Category.Name </td>
+                                    }
+                                    else
+                                    {
+                                        <td>fucking null</td>
+                                    }
+                                    @* <td>@Html.ActionLink("Image Path", item.ImagePath)</td> *@
+                                    <td>@item.ImagePath</td>
+                                    <td>
+                                        <a class="btn btn-view">See</a>
+                                        <a asp-area="Admin"
+                                           asp-controller="Articles"
+                                           asp-action="Edit"
+                                           class="btn btn-primary btn-edit"
+                                           asp-route-id="@item.Id">Edit</a>
+                                        <a asp-area="Admin"
+                                           asp-controller="Articles"
+                                           asp-action="Delete"
+                                           asp-route-id="@item.Id"
+                                           class="btn btn-danger btn-delete">Delete</a>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <!-- <script> document.addEventListener('DOMContentLoaded', function () { new ResizableGrid('#resizable-table'); }); </script> -->
+
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="footer">
+                        <p>2018 © Admin Board. - <a href="#">example.com</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

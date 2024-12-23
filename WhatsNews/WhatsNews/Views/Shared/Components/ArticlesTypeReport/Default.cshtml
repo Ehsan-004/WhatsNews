@@ -1,0 +1,24 @@
+﻿@model IEnumerable<WhatsNews.Models.Article>
+
+<div class="special-posts">
+    <span class="title">گزارش</span><br>
+    @if (Model.Any())
+    {
+        @foreach(var item in Model)
+        {
+            <div class="special-box">
+                <a href="#">
+                    <figure>
+                        <img src="~/LocalStyles/img/1397022612335447514155694.jpg" alt="">
+                        <figcaption class="txt">
+                            <h4>@item.Title</h4>
+                            <span><i class="fa fa-calendar-o"></i> @item.PublishDate.Date</span>
+                            <span><i class="fa fa-comment-o"></i> @item.Views</span>
+                        </figcaption>
+                        <figcaption class="link"><i class="fa fa-external-link"></i></figcaption>
+                    </figure>
+                </a>
+            </div>
+        }
+    }
+</div>

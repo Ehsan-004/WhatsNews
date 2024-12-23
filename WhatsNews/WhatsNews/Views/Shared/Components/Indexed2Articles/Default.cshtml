@@ -1,0 +1,67 @@
+﻿@model WhatsNews.ViewModels.IndexedArticlesViewModel
+
+@{
+    Layout = null;
+}
+<div class="most-views">
+    <div class="main-slider-box">
+        <div class="owl-carousel owl-theme main-slider">
+            <span class="title">مطالب پربازدید</span>
+
+            @if (Model.LargeArticles != null)
+            {
+                @foreach(var item in Model.LargeArticles)
+                {
+                    <!-- Index 2 Main Articles Start -->
+        
+                    <div class="col-md-8">
+                        <div class="main-post">
+                            <a href="#">
+                                <figure>
+                                    <img src="@item.ImagePath" alt="">
+                                    <figcaption>
+                                        <span><i class="fa fa-folder-o"></i> خبر روز</span>
+                                        <h3>ایپسوم متن ساختگی با تولید سادگی نامفهوم تولید سادگی از صنعت</h3>
+                                        <span><i class="fa fa-comments-o"></i> @item.Views</span>
+                                    </figcaption>
+                                </figure>
+                                <div class="p-div">
+                                    <p>@item.ShortDescription</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                }
+            }
+
+            <!-- Index 2 Main Articles End -->
+
+            <div class="col-md-4">  
+                <div class="oth-posts">
+                    @if (Model.SmallArticles != null)
+                    {
+                        @foreach (var item in Model.SmallArticles)
+                        {
+                            <!-- Index 2 articles Start -->
+                            <div class="r-box">
+                                <span class="cat-span">آموزشی</span>
+                                <span class="cat-span">#خبر</span>
+                                <a href="#">
+                                    <h5>
+                                        @( item.ShortDescription == null || item.ShortDescription.Length <= 50
+                                            ? item.ShortDescription
+                                            : item.ShortDescription.Substring(0, 50) + "..."
+                                        )
+                                    </h5>
+                                </a>
+                                <span><i class="fa fa-clock-o"></i> @item.PublishDate.Date</span>
+                            </div>
+                        }
+                    }
+                    <!-- Index 2 articles End -->
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

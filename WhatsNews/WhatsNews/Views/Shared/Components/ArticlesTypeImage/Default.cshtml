@@ -1,0 +1,43 @@
+﻿@model IEnumerable<WhatsNews.Models.Article>
+
+@{
+    Layout = null;
+}
+
+<div class="col-md-3">
+    <div class="top-sidebar-r">
+        <span class="title">عکس</span>
+        
+        @if (Model != null && Model.Any()){
+            @foreach (var item in Model)
+            {   
+                <a href="#">
+                    <div class="bx">
+                        <div class="col-md-6">
+                            <div class="img-box">
+                                <figure>
+                                    <img src="@item.ImagePath" alt="@item.ShortDescription.Substring(0,20)">
+                                    <figcaption><span>1</span></figcaption>
+                                </figure>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="meta">
+                                <h5>@item.Title</h5>
+                                <span><i class="fa fa-clock-o"></i> @item.PublishDate.Date</span>
+                                <div class="text-left">
+                                    <sub><i class="fa fa-comment"></i> @item.Views</sub>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            }
+            <!-- Image Part End -->
+        }
+        else
+        {
+
+        }
+    </div>
+</div>

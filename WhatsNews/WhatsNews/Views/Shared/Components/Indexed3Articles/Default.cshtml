@@ -1,0 +1,61 @@
+﻿@model WhatsNews.ViewModels.IndexedArticlesViewModel
+
+@{
+    Layout = null;
+}
+<div class="special-cat-box">
+    <span class="title">فیلم و ویدئو</span>
+    <div class="col-md-6">
+        @if (Model.LargeArticles != null)
+        {
+
+            <!-- Index 3 Main Articles Start -->
+
+            @foreach (var item in Model.LargeArticles)
+            {
+                <div class="main-post">
+                    <a href="#">
+                        <figure>
+                            <img src="@item.ImagePath" alt="">
+                            <figcaption>
+                                <span><i class="fa fa-folder-o"></i>@item.Title</span>
+                                <h3>@item.ShortDescription</h3>
+                                <span><i class="fa fa-comments-o"></i> @item.Views</span>
+                            </figcaption>
+                        </figure>
+                    </a>
+                </div>
+            }
+            <!-- Index 3 Main Articles End -->
+
+        }
+    </div>
+    <div class="col-md-6">
+        <div class="left-content">
+            @if (Model.SmallArticles != null)
+            {
+
+                <!-- Index 3 Articles Start -->
+            
+                @foreach(var item in Model.SmallArticles)
+                {
+                    <div class="col-md-6">
+                        <a href="#">
+                            <div class="content">
+                                <figure>
+                                    <img src="@item.ImagePath" alt="">
+                                    <figcaption><i class="fa fa-external-link"></i></figcaption>
+                                </figure>
+                                <span>دسته بندی</span>
+                                <span>انجمن</span>
+                                <h5>@item.ShortDescription</h5>
+                            </div>
+                        </a>
+                    </div>
+
+                }       
+                <!-- Index 3 Articles End -->
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,159 @@
+﻿@using WhatsNews.Models.Enum
+@model WhatsNews.Areas.Admin.ViewModels.ArticleCategoryVm
+
+@{
+    ViewBag.Title = "title";
+}
+
+<div class="content-wrap">
+    <div class="main">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-8 p-r-0 title-margin-right">
+                    <div class="page-header">
+                        <div class="page-title">
+                            <h1>Hello, <span>Welcome Here</span></h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /# row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-title">
+                            <h4>Create New Article</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="basic-elements">
+                                @* <form method="post" asp-area="Admin" asp-controller="Categories" asp-action="Create"> *@
+                                <form method="post" asp-controller="Articles" asp-action="Create" enctype="multipart/form-data">
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                                            <div class="form-group">
+                                                <label asp-for="CategoryId">Category</label>
+                                                <select asp-for="CategoryId" class="form-control" asp-items="@(new SelectList(Model.Categories, "Id", "Name"))" required></select>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Title</label>
+                                                <input asp-for="Title" class="form-control" placeholder="Title">
+                                                <span asp-validation-for="Title" class="text-danger"></span>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Short Description</label>
+                                                <input asp-for="ShortDescription" class="form-control" placeholder="ShortDescription">
+                                                <span asp-validation-for="ShortDescription" class="text-danger"></span>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label asp-for="PublishDate">Article PublishDate</label>
+                                                <input asp-for="PublishDate" class="form-control" type="date" id="publishDate">
+                                                <span asp-validation-for="PublishDate" class="text-danger"></span>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Content</label>
+                                                <input asp-for="Content" class="form-control" placeholder="Content">
+                                                <span asp-validation-for="Content" class="text-danger"></span>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label asp-for="Index1">Is Article Indexed1</label>
+                                                <input type="checkbox" asp-for="Index1"/>
+                                                <span asp-validation-for="Index1" class="text-danger"></span>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label asp-for="Index1">Is Article Indexed2</label>
+                                                <input type="checkbox" asp-for="Index2"/>
+                                                <span asp-validation-for="Index2" class="text-danger"></span>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label asp-for="Index3">Is Article Indexed3</label>
+                                                <input type="checkbox" asp-for="Index3"/>
+                                                <span asp-validation-for="Index3" class="text-danger"></span>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="imageFile">Article Image</label>
+                                                <input type="file" class="form-control" id="imageFile" name="imageFile" required/>
+                                                <img id="preview" src="#" alt="Preview" style="max-width: 200px; display: none;">
+                                                <span asp-validation-for="ImagePath" class="text-danger"></span>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label asp-for="AType">Article Type</label>
+                                                <select asp-for="AType" class="form-control" asp-items="@Html.GetEnumSelectList<AType>()"></select>
+                                                <span asp-validation-for="AType" class="text-danger"></span>
+                                            </div>
+
+
+
+                                            @* <div class="form-group"> *@
+                                            @*     <label>Password</label> *@
+                                            @*     <input class="form-control" type="password" value="password"> *@
+                                            @* </div> *@
+                                            @* <div class="form-group"> *@
+                                            @*     <label>Text area</label> *@
+                                            @*     <textarea class="form-control" rows="3" placeholder="Text input"></textarea> *@
+                                            @* </div> *@
+                                            @* <div class="form-group"> *@
+                                            @*     <label>Readonly</label> *@
+                                            @*     <input class="form-control" type="text" value="Readonly value" readonly=""> *@
+                                            @* </div> *@
+
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-default">Create</button>
+                                    <a class="btn btn-primary" asp-area="Admin" asp-controller="Articles" asp-action="Index">Back To List</a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="footer">
+                            <p>2018 © Admin Board. - <a href="#">example.com</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts
+{
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var today = new Date().toISOString().split('T')[0]; // فرمت YYYY-MM-DD
+        document.getElementById("publishDate").value = today;
+    });
+    const imageFile = document.getElementById('imageFile');
+    const preview = document.getElementById('preview');
+
+    imageFile.addEventListener('change', function() {
+        const file = this.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                preview.src = e.target.result;
+                preview.style.display = 'block';
+            }
+            reader.readAsDataURL(file);
+        } else {
+            preview.src = '#';
+            preview.style.display = 'none';
+        }
+    });
+</script>
+}   

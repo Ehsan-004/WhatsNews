@@ -1,8 +1,124 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+<div class="clear-fix"></div>
+<div class="row">
+    
+    <!-- Image Articles -->
+    @await Component.InvokeAsync("ArticlesTypeImage")
+    <!-- Image Articles -->
+    
+    <!-- Index 1 Start -->
+    @await Component.InvokeAsync("Indexed1Articles")
+    <!-- Index 1 End -->
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <!-- Text Start -->
+    @await Component.InvokeAsync("ArticlesTypetext")
+    <!-- Text End -->
+</div>
+
+<div class="clear-fix"></div>
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="r-sidebar">
+                    
+                    <!-- Conversation Start -->
+                    <!-- گفتگو -->
+                    @await Component.InvokeAsync("ArticlesTypeReport")
+                    <!-- گفتگو -->
+                    <!-- Conversation End -->
+                        
+                    <div class="ads-box">
+                        <span class="title">تبلیغات</span><br>
+
+                        <!-- Ads Start -->
+                        <figure>
+                            <img src="~/LocalStyles/img/unnamed.jpg" alt="">
+                        </figure>
+                        <figure>
+                            <img src="~/LocalStyles/img/unnamed.jpg" alt="">
+                        </figure>
+                        <!-- Conversation End -->
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="content-wrapper">
+                    
+                    <!-- Index 2 Start -->
+                    @await Component.InvokeAsync("Indexed2Articles")
+                    <!-- Index 2 End -->
+        
+                    
+                    @await Component.InvokeAsync("MostViewedArticles")
+                    
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="l-sidebar">
+                    <div class="cat-sidebar report">
+                        <span class="title">گزارش</span>
+                        <div class="text-left"><i class="fa fa-arrows-alt"></i></div>
+                        <ul>
+                            <!-- Reports Start -->
+                            <li><a href="#">لورم ایپسو استفاده از طراحان</a></li>
+                            <!-- Reports End -->
+                        </ul>
+                    </div>
+                </div>
+                <div class="l-sidebar">
+                    <div class="cat-sidebar">
+                        <span class="title">دسته بندی مطالب</span>
+                        <div class="text-left"><i class="fa fa-folder-o"></i></div>
+                        <ul>
+                            <!-- Categories Start -->
+                            <li><a href="#">موضوعی</a><span>32</span></li>
+                            <!-- Categories End -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clear-fix"></div>
+    <div class="latest-posts">
+        <div class="container-fluid">
+            <div class="blog-title-span">
+                <span class="title">آخرین مطالب</span>
+            </div>
+
+            <!-- Recent Articles Start -->
+            <div class="col-md-3">
+                <div class="post-box">
+                    <a href="#">
+                        <figure>
+                            <img src="~/LocalStyles/img/290667058azer news.jpg" alt="">
+                            <figcaption class="meta-fig">
+                                <span><i class="fa fa-clock-o"></i> 99/3/20</span>&nbsp;
+                                <span><i class="fa fa-comment-o"></i> 12</span>
+                            </figcaption>
+                            <figcaption class="view">
+                                <span>بخش ویژه</span>
+                                <span>انجمن</span>
+                                <span>اتاق خبر</span>
+                            </figcaption>
+                        </figure>
+                        <div class="text-p">
+                            <h5>چگونه از اشخاص مطالبی که دوست نداریم دوری کنیم ؟</h5>
+                            <p> متن ساختگی با تولید سادگی نامفهوم تولید سادگی از صنعت متن ساختگی با تولید سادگی
+                                نامفهوم تولید سادگی از صنعت
+                            </p>
+                            <div class="text-rigt">
+                                <a href="#">ادامه ...</a></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <!-- Recent Articles End -->
+
+        </div>
+    </div>
 </div>

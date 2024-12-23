@@ -15,4 +15,10 @@
       </PackageReference>
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Pages\Shared\Components\" />
+      <Folder Include="wwwroot\Admin\" />
+      <Folder Include="wwwroot\LocalStyles\" />
+    </ItemGroup>
+
 </Project>

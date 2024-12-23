@@ -1,0 +1,27 @@
+﻿@model IEnumerable<WhatsNews.Models.Article>
+
+@{
+    Layout = null;
+}
+
+<div class="col-md-3">
+    <div class="top-sidebar-l">
+        <span class="title">یادداشت</span>
+        @if(Model.Any())
+        {
+            @foreach (var item in Model)
+            {
+                <a href="#">
+                    <div class="bx">
+                        <div class="col-md-3 nopadding">
+                            <span><i class="fa fa-heart"></i> @item.Views</span>
+                        </div>
+                        <div class="col-md-8 nopadding">
+                            <h3>@item.ShortDescription</h3>
+                        </div>
+                    </div>
+                </a>
+            }
+        }
+    </div>
+</div>

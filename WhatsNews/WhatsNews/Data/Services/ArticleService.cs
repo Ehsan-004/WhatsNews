@@ -1,4 +1,5 @@
 ﻿using System.Text.RegularExpressions;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WhatsNews.Data.Interfaces;
 using WhatsNews.Models;
@@ -24,24 +25,44 @@ public class ArticleService : IArticleRepository
         return _context.Articles.ToList();
     }
 
+    public IEnumerable<Article> GetArticlesWithCategory()
+    {
+        return _context.Articles.Include(a => a.Category).ToList();
+    }
+
+    public Article GetArticleWithCategory(int id)
+    {
+        return _context.Articles.Include(a => a.Category).SingleOrDefault(a => a.Id == id);
+    }
+
     public async Task<IEnumerable<Article>> GetArticlesAsync()
     {
         return await _context.Articles.ToListAsync();
     }
 
-    public IEnumerable<Article> GetIndexed1(int num = 5)
+    public async Task<IEnumerable<Article>> GetIndexed1Async(int num = 5)
     {
-        return _context.Articles.Where(a => a.Index1 == true).Take(num).ToList();
+        return await _context.Articles.Where(a => a.Index1 == true).Take(num).ToListAsync();
     }
 
-    public IEnumerable<Article> GetIndexed2(int num = 5)
+    public async Task<IEnumerable<Article>> GetIndexed2Async(int num = 5)
     {
-        return _context.Articles.Where(a => a.Index2 == true).Take(num).ToList();
+        return await _context.Articles.Where(a => a.Index2 == true).Take(num).ToListAsync();
     }
 
-    public IEnumerable<Article> GetIndexed3(int num = 5)
+    public IQueryable<Article> GetIndexed2AsQueryable(int num = 5)
     {
-        return _context.Articles.Where(a => a.Index3 == true).Take(num).ToList();
+        return _context.Articles.Where(a => a.Index2 == true).Take(num);
+    }
+
+    public async Task<IEnumerable<Article>> GetIndexed3Async(int num = 5)
+    {
+        return await _context.Articles.Where(a => a.Index3 == true).Take(num).ToListAsync();
+    }
+
+    public IQueryable<Article> GetIndexed3AsQueryable(int num = 5)
+    {
+        return _context.Articles.Where(a => a.Index3 == true).Take(num);
     }
 
     public IEnumerable<Article> GetMostViewed(int num = 5)
@@ -54,19 +75,34 @@ public class ArticleService : IArticleRepository
         return _context.Articles.OrderByDescending(a => a.PublishDate).Take(num).ToList();
     }
 
-    public IEnumerable<Article> GetByType(AType type)
+    public async Task<IEnumerable<Article>> GetRecentAsync(int num = 5)
+    {
+        return await _context.Articles.OrderByDescending(a => a.PublishDate).Take(num).ToListAsync();
+    }
+
+    public async Task<IEnumerable<Article>> GetByTypeAsync(AType type)
     {
         return _context.Articles.Where(a => a.AType == type).ToList();
     }
 
-    public IEnumerable<Article> GetByCategory(int categoryId)
+    public IEnumerable<Article> GetByCategory(Category category)
     {
-        return _context.Articles.Where(a=>a.CategoryId ==categoryId).ToList();
+        return _context.Articles.Where(a=>a.Category ==category).ToList();
     }
 
     public Article GetById(int id)
     {
         return _context.Articles.FirstOrDefault(a => a.Id == id);
+    }
+
+    public Article GetArticleNoTracking(int id)
+    {
+        return _context.Articles.AsNoTracking().FirstOrDefault(a => a.Id == id);
+    }
+
+    public bool ArticleExists(int id)
+    {
+        return (_context.Articles.AsNoTracking().Any(a => a.Id == id));
     }
 
     public bool IncreaseViews(int id)

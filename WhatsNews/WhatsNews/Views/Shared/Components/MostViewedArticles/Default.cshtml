@@ -1,0 +1,25 @@
+﻿@model IEnumerable<WhatsNews.Models.Article>
+
+@{
+    Layout = null;
+}
+
+
+<div class="col-md-4">
+    <div class="oth-posts">
+        @if (Model != null)
+        {
+            @foreach (var item in Model)
+            {
+                <div class="r-box">
+
+                    <span class="cat-span">Tag</span>
+                    <a href="{% url 'News:single' article.id %}">
+                        <h5>@item.Title</h5>
+                    </a>
+                    <span><i class="fa fa-clock-o"></i> @item.PublishDate.Date</span>
+                </div>
+            }
+        }
+    </div>
+</div>
