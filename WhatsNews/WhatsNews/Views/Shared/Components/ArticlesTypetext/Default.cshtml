@@ -11,7 +11,7 @@
         {
             @foreach (var item in Model)
             {
-                <a href="#">
+                <a asp-controller="Articles" asp-action="Show" asp-route-id="@item.Id">
                     <div class="bx">
                         <div class="col-md-3 nopadding">
                             <span><i class="fa fa-heart"></i> @item.Views</span>

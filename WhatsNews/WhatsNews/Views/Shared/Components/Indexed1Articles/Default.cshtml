@@ -12,14 +12,16 @@
                 <div class="item">
                     <figure>
                         @* <img src="~/LocalStyles/img/unnamed.jpg" alt=""> *@
-                        <img src="@item.ImagePath" alt="">
-                        <figcaption class="gradient-fig"></figcaption>
-                        <figcaption class="desc-fig">
-                            <span><i class="fa fa-heart"></i> @item.Views</span>
-                            <h3>@item.Title</h3>
-                            <span><i class="fa fa-clock-o"></i> @item.PublishDate</span>
-                            <p>@item.ShortDescription</p>
-                        </figcaption>
+                        <a asp-controller="Articles" asp-action="Show" asp-route-id="@item.Id">
+                            <img src="@item.ImagePath" alt="">
+                            <figcaption class="gradient-fig"></figcaption>
+                            <figcaption class="desc-fig">
+                                <span><i class="fa fa-heart"></i> @item.Views</span>
+                                <h3>@item.Title</h3>
+                                <span><i class="fa fa-clock-o"></i> @item.PublishDate</span>
+                                <p>@item.ShortDescription</p>
+                            </figcaption>
+                        </a>
                     </figure>
                 </div>
             }

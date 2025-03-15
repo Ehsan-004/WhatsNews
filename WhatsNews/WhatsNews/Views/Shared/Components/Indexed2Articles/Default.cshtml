@@ -16,7 +16,7 @@
         
                     <div class="col-md-8">
                         <div class="main-post">
-                            <a href="#">
+                            <a asp-controller="Articles" asp-action="Show" asp-route-id="@item.Id">
                                 <figure>
                                     <img src="@item.ImagePath" alt="">
                                     <figcaption>

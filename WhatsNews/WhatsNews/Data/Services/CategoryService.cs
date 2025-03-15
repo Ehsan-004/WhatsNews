@@ -1,4 +1,5 @@
-﻿using WhatsNews.Data.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using WhatsNews.Data.Interfaces;
 using WhatsNews.Models;
 using WhatsNews.Models.Context;
 
@@ -16,6 +17,11 @@ public class CategoryService : ICategoryRepository
     public IEnumerable<Category> GetCategories()
     {
         return _context.Categories.ToList();
+    }
+
+    public async Task<IReadOnlyList<Category>> GetCategoriesAsync(int count = 10)
+    {
+        return await _context.Categories.Take(count).ToListAsync();
     }
 
     public Category GetCategoryById(int id)

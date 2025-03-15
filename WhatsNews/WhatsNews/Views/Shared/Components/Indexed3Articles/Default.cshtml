@@ -14,7 +14,7 @@
             @foreach (var item in Model.LargeArticles)
             {
                 <div class="main-post">
-                    <a href="#">
+                    <a asp-controller="Articles" asp-action="Show" asp-route-id="@item.Id">
                         <figure>
                             <img src="@item.ImagePath" alt="">
                             <figcaption>
@@ -40,7 +40,7 @@
                 @foreach(var item in Model.SmallArticles)
                 {
                     <div class="col-md-6">
-                        <a href="#">
+                        <a asp-controller="Articles" asp-action="Show" asp-route-id="@item.Id">
                             <div class="content">
                                 <figure>
                                     <img src="@item.ImagePath" alt="">

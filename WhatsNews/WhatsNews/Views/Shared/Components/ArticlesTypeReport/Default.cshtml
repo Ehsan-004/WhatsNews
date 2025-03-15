@@ -9,7 +9,7 @@
             {
                 @foreach(var item in Model)
                 {
-                    <li><a href="#">@item.Title</a></li>
+                    <li><a asp-controller="Articles" asp-action="Show" asp-route-id="@item.Id">@item.Title</a></li>
                 }
             }
         </ul>

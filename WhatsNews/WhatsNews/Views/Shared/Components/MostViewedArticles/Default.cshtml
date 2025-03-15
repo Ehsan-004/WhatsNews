@@ -14,7 +14,7 @@
                 <div class="r-box">
 
                     <span class="cat-span">Tag</span>
-                    <a href="{% url 'News:single' article.id %}">
+                    <a asp-controller="Articles" asp-action="Show" asp-route-id="@item.Id">
                         <h5>@item.Title</h5>
                     </a>
                     <span><i class="fa fa-clock-o"></i> @item.PublishDate.Date</span>

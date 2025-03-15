@@ -1,0 +1,22 @@
+﻿@using Microsoft.IdentityModel.Tokens
+@model IReadOnlyList<Category>
+
+@{
+    Layout = null;
+}
+
+<div class="l-sidebar">
+    <div class="cat-sidebar">
+        <span class="title">دسته بندی خبرها</span>
+        <div class="text-left"><i class="fa fa-folder-o"></i></div>
+        <ul>
+            @if (Model.Any())
+            {
+                foreach (var item in Model)
+                {
+                    <li><a asp-controller="Categories" asp-action="CategoryArticles" asp-route-categoryId="@item.Id">@item.Name</a><span> post_count</span></li>   
+                }          
+            }
+        </ul>
+    </div>
+</div>

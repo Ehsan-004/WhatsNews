@@ -11,7 +11,7 @@
         @if (Model != null && Model.Any()){
             @foreach (var item in Model)
             {   
-                <a href="#">
+                <a asp-controller="Articles" asp-action="Show" asp-route-id="@item.Id">
                     <div class="bx">
                         <div class="col-md-6">
                             <div class="img-box">
