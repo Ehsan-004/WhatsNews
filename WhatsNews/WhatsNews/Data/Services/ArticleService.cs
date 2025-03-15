@@ -35,9 +35,9 @@ public class ArticleService : IArticleRepository
         return _context.Articles.Include(a => a.Category).SingleOrDefault(a => a.Id == id);
     }
 
-    public async Task<IEnumerable<Article>> GetArticlesAsync()
+    public async Task<IReadOnlyList<Article>> GetArticlesAsync(int count = 8)
     {
-        return await _context.Articles.ToListAsync();
+        return await _context.Articles.Take(count).ToListAsync();
     }
 
     public async Task<IEnumerable<Article>> GetIndexed1Async(int num = 5)

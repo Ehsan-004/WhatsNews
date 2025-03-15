@@ -6,8 +6,8 @@ namespace WhatsNews.Data.Interfaces;
 public interface IArticleRepository
 {
     public IEnumerable<Article> GetArticles();
+    public Task<IReadOnlyList<Article>> GetArticlesAsync(int count = 8);
     public IEnumerable<Article> GetArticlesWithCategory();
-    public Task<IEnumerable<Article>> GetArticlesAsync();
     public Task<IEnumerable<Article>> GetIndexed1Async(int num = 5);
     public Task<IEnumerable<Article>> GetIndexed2Async(int num = 5);
     public IQueryable<Article> GetIndexed2AsQueryable(int num = 5);

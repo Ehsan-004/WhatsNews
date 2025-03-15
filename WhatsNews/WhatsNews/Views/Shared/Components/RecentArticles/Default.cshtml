@@ -1,0 +1,37 @@
+﻿@model IReadOnlyList<Article>
+
+@{
+    Layout = null;
+}
+
+
+@if (Model.Any())
+{
+    @foreach(var item in Model)
+    {
+        <div class="col-md-3">
+            <div class="post-box">
+                <a  asp-controller="Articles" asp-action="Show" asp-route-id="@item.Id">
+                    <figure>
+                        <img src="@item.ImagePath" alt="">
+                        <figcaption class="meta-fig">
+                            <span><i class="fa fa-clock-o"></i> @item.PublishDate.Date</span>&nbsp;
+                            <span><i class="fa fa-comment-o"></i> 12</span>
+                        </figcaption>
+                        @* <figcaption class="view"> *@
+                        @*     <span>بخش ویژه</span> *@
+                        @*     <span>انجمن</span> *@
+                        @*     <span>اتاق خبر</span> *@
+                        @* </figcaption> *@
+                    </figure>
+                    <div class="text-p">
+                        <h5>@item.Title</h5>
+                        <p>@item.ShortDescription</p>
+                        <div class="text-rigt">
+                            <a  asp-controller="Articles" asp-action="Show" asp-route-id="@item.Id">ادامه ...</a></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    }
+}
