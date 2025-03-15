@@ -67,7 +67,7 @@ public class ArticleService : IArticleRepository
 
     public IEnumerable<Article> GetMostViewed(int num = 5)
     {
-        return _context.Articles.OrderByDescending(a => a.Views).Take(num).ToList();
+        return _context.Articles.AsNoTracking().OrderByDescending(a => a.Views).Take(num).ToList();
     }
 
     public IEnumerable<Article> GetRecent(int num = 5)
@@ -82,7 +82,7 @@ public class ArticleService : IArticleRepository
 
     public async Task<IEnumerable<Article>> GetByTypeAsync(AType type)
     {
-        return _context.Articles.Where(a => a.AType == type).ToList();
+        return await _context.Articles.Where(a => a.AType == type).ToListAsync();
     }
 
     public IEnumerable<Article> GetByCategory(Category category)
@@ -130,7 +130,6 @@ public class ArticleService : IArticleRepository
         if (!string.IsNullOrEmpty(imagePath))
         {
             var oldImagePath = Path.Combine(_hostingEnvironment.WebRootPath, imagePath.TrimStart('/'));
-            Console.WriteLine(oldImagePath);
 
             if (System.IO.File.Exists(oldImagePath))
                 System.IO.File.Delete(oldImagePath);

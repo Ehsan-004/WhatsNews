@@ -3,15 +3,18 @@
 }
 <div class="clear-fix"></div>
 <div class="row">
-    
+
+    <!--  -->
     <!-- Image Articles -->
     @await Component.InvokeAsync("ArticlesTypeImage")
     <!-- Image Articles -->
-    
+
+    <!--  -->
     <!-- Index 1 Start -->
     @await Component.InvokeAsync("Indexed1Articles")
     <!-- Index 1 End -->
 
+    <!--  -->
     <!-- Text Start -->
     @await Component.InvokeAsync("ArticlesTypetext")
     <!-- Text End -->
@@ -51,46 +54,32 @@
                     <!-- Index 2 Start -->
                     @await Component.InvokeAsync("Indexed2Articles")
                     <!-- Index 2 End -->
-        
-                    
-                    @await Component.InvokeAsync("MostViewedArticles")
-                    
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="l-sidebar">
-                    <div class="cat-sidebar report">
-                        <span class="title">گزارش</span>
-                        <div class="text-left"><i class="fa fa-arrows-alt"></i></div>
-                        <ul>
-                            <!-- Reports Start -->
-                            <li><a href="#">لورم ایپسو استفاده از طراحان</a></li>
-                            <!-- Reports End -->
-                        </ul>
+
+                    <!-- Categories Start -->
+                    <div class="l-sidebar">
+                        <div class="cat-sidebar">
+                            <span class="title">دسته بندی خبرها</span>
+                            <div class="text-left"><i class="fa fa-folder-o"></i></div>
+                            <ul>
+                                <li><a href="">name</a><span> post_count</span></li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-                <div class="l-sidebar">
-                    <div class="cat-sidebar">
-                        <span class="title">دسته بندی مطالب</span>
-                        <div class="text-left"><i class="fa fa-folder-o"></i></div>
-                        <ul>
-                            <!-- Categories Start -->
-                            <li><a href="#">موضوعی</a><span>32</span></li>
-                            <!-- Categories End -->
-                        </ul>
-                    </div>
+                    <!-- Categories End -->
+                    
                 </div>
             </div>
         </div>
     </div>
+    
     <div class="clear-fix"></div>
     <div class="latest-posts">
+        
+        <!-- Recent Articles Start -->
         <div class="container-fluid">
             <div class="blog-title-span">
                 <span class="title">آخرین مطالب</span>
             </div>
-
-            <!-- Recent Articles Start -->
             <div class="col-md-3">
                 <div class="post-box">
                     <a href="#">
@@ -117,8 +106,9 @@
                     </a>
                 </div>
             </div>
-            <!-- Recent Articles End -->
 
         </div>
+        <!-- Recent Articles End -->
+
     </div>
 </div>

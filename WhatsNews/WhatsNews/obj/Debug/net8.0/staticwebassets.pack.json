@@ -17389,8 +17389,24 @@
       "PackagePath": "staticwebassets\\style.css"
     },
     {
+      "Id": "E:\\Projects\\RealProjects\\Web\\WhatsNews\\WhatsNews\\WhatsNews\\wwwroot\\uploads\\articles\\3a59d6ad-2516-494e-8447-3d04613cf66e.webp",
+      "PackagePath": "staticwebassets\\uploads\\articles\\3a59d6ad-2516-494e-8447-3d04613cf66e.webp"
+    },
+    {
       "Id": "E:\\Projects\\RealProjects\\Web\\WhatsNews\\WhatsNews\\WhatsNews\\wwwroot\\uploads\\articles\\8186f8e8-d89e-4c64-86cb-085ca1ef5894.jpg",
       "PackagePath": "staticwebassets\\uploads\\articles\\8186f8e8-d89e-4c64-86cb-085ca1ef5894.jpg"
+    },
+    {
+      "Id": "E:\\Projects\\RealProjects\\Web\\WhatsNews\\WhatsNews\\WhatsNews\\wwwroot\\uploads\\articles\\a11264fa-d90b-4120-a9b8-b7b9786ef402.png",
+      "PackagePath": "staticwebassets\\uploads\\articles\\a11264fa-d90b-4120-a9b8-b7b9786ef402.png"
+    },
+    {
+      "Id": "E:\\Projects\\RealProjects\\Web\\WhatsNews\\WhatsNews\\WhatsNews\\wwwroot\\uploads\\articles\\c2691a75-4792-4055-b8a2-117b704493c0.webp",
+      "PackagePath": "staticwebassets\\uploads\\articles\\c2691a75-4792-4055-b8a2-117b704493c0.webp"
+    },
+    {
+      "Id": "E:\\Projects\\RealProjects\\Web\\WhatsNews\\WhatsNews\\WhatsNews\\wwwroot\\uploads\\articles\\d54b57f5-ec32-46fb-8fcd-014ad20944dd.webp",
+      "PackagePath": "staticwebassets\\uploads\\articles\\d54b57f5-ec32-46fb-8fcd-014ad20944dd.webp"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.WhatsNews.Microsoft.AspNetCore.StaticWebAssets.props",

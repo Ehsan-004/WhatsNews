@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WhatsNews")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+faaba1ef46ea9f3d4980c920896fcc41a26b524c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f8bb8ab853d21d73523c4a67f0146f2fffddc5a1")]
 [assembly: System.Reflection.AssemblyProductAttribute("WhatsNews")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WhatsNews")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

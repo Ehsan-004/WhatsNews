@@ -46,7 +46,7 @@ public class ArticlesController : Controller
     }
 
     [HttpPost]
-    public IActionResult Create(ArticleCategoryVm articleVm, IFormFile imageFile)
+    public async Task<IActionResult> Create(ArticleCategoryVm articleVm, IFormFile imageFile)
     {
         if (!ModelState.IsValid)
         {
@@ -71,26 +71,26 @@ public class ArticlesController : Controller
             return RedirectToAction("Create");
         }
         
+        // concatenates the wwwroot path with image path
         var uploadDir = Path.Combine(_environment.WebRootPath, "uploads/articles");
+        
+        // generate and use a GUID instead of file name to make its name unique 
         var fileName = Guid.NewGuid().ToString() + Path.GetExtension(imageFile.FileName);
+        
+        // full path to save the file
         var filePath = Path.Combine(uploadDir, fileName);
         
         if (!Directory.Exists(uploadDir))
             Directory.CreateDirectory(uploadDir);
         
+        // save the file on the server
         using (var fileStream = new FileStream(filePath, FileMode.Create))
-            imageFile.CopyToAsync(fileStream);
+            await imageFile.CopyToAsync(fileStream);
         
+        // save the path to viewmodel
         articleVm.ImagePath = "/uploads/articles/" + fileName;
         
         var category = _categoryContext.GetCategoryById(articleVm.CategoryId.Value);
-
-        Console.WriteLine("----------------------------------------------------");
-        Console.WriteLine($"created the category: {category.Name}");
-        Console.WriteLine($"Id of the article: {articleVm.Id}");
-        Console.WriteLine($"Size of image is {imageFile.Length}");
-        Console.WriteLine($"Image path is {articleVm.ImagePath}");
-        Console.WriteLine("----------------------------------------------------");
 
         var article = new Article
         {
@@ -106,9 +106,7 @@ public class ArticlesController : Controller
             AType = articleVm.AType,
             Category = category,
         };  
-        Console.WriteLine(article.Category);
-        Console.WriteLine(article.Category.Name);
-
+        
         _context.Create(article);
         _context.Save();
         
@@ -118,7 +116,7 @@ public class ArticlesController : Controller
     public IActionResult Edit(int id)
     {
         var article = _context.GetById(id);
-        if (_context.ArticleExists(id)) return View("Error");
+        if (!_context.ArticleExists(id)) return View("Error");
         
         var articleVm = new ArticleCategoryVm
         {
@@ -141,7 +139,7 @@ public class ArticlesController : Controller
     }
     
     [HttpPost]
-    public IActionResult Edit(int id, ArticleCategoryVm articleVm)
+    public async Task<IActionResult> Edit(int id, ArticleCategoryVm articleVm)
     {
         if (!ModelState.IsValid)
         {
@@ -149,21 +147,17 @@ public class ArticlesController : Controller
             return RedirectToAction("Index"); // Return the view with the current model
         }
 
-        // Fetch the existing category
-        
+        // check if the article exists
         if (!_context.ArticleExists(id)) return View("Error");
 
         // Check if a new file is uploaded
         if (articleVm.ImageFile is { Length: > 0 }) // image not null and length > 0
         {
-            // Create the upload directory if it doesn't exist
             var uploadDir = Path.Combine(_environment.WebRootPath, "uploads/articles/");
             if (!Directory.Exists(uploadDir))
-            {
                 Directory.CreateDirectory(uploadDir);
-            }
 
-            // Delete the old image if it exists
+            // Delete the old image if it already exists
             if (!string.IsNullOrEmpty(articleVm.ImagePath))
             {
                 var oldImagePath = Path.Combine(_environment.WebRootPath, articleVm.ImagePath.TrimStart('/'));
@@ -172,13 +166,13 @@ public class ArticlesController : Controller
                     System.IO.File.Delete(oldImagePath);
             }
 
-            // Create a new file name and path for the new image
+            // generate a GUID as file name to make its name unique
             var fileName = Guid.NewGuid().ToString() + Path.GetExtension(articleVm.ImageFile.FileName);
             var filePath = Path.Combine(uploadDir, fileName);
 
             // Save the new image
             using (var fileStream = new FileStream(filePath, FileMode.Create))
-                articleVm.ImageFile.CopyToAsync(fileStream);
+                await articleVm.ImageFile.CopyToAsync(fileStream);
 
             // Update the ImagePath in the view model
             articleVm.ImagePath = "/uploads/articles/" + fileName;
@@ -209,25 +203,18 @@ public class ArticlesController : Controller
             Likes = articleVm.Likes, 
         };
 
-        // Update the category in the context
         _context.Update(updatedArticle);
-        Console.WriteLine("----------------------------");
-        Console.WriteLine(updatedArticle);
-        Console.WriteLine("----------------------------");
         _context.Save();
 
-        // Redirect to the Index action
         return RedirectToAction("Index");
     }
 
     public IActionResult Delete(int id)
     {
-        Console.WriteLine("================================");
-        Console.WriteLine("Deleting article");
         var article = _context.GetArticlesWithCategory().Single(a => a.Id == id);
 
         if (article == null) return Json(new{ErrorText = "Article Not Found"});
-    return View("Delete", article);
+        return View("Delete", article);
     }
 
     [HttpPost, ActionName("Delete")]
