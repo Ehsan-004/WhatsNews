@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "OvRDklg8xZ01a/p3nJUQalFFPIV7D1h9kGTGMi3Cv/Y=",
+  "Hash": "hCJJuC2xPxD0tvkm4PZbpirZpm86mGWtXvUqFzHfyR8=",
   "Source": "WhatsNews",
   "BasePath": "_content/WhatsNews",
   "Mode": "Default",
@@ -81069,6 +81069,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "E:\\Projects\\RealProjects\\Web\\WhatsNews\\WhatsNews\\WhatsNews\\wwwroot\\jQuery.js",
+      "SourceId": "WhatsNews",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Projects\\RealProjects\\Web\\WhatsNews\\WhatsNews\\WhatsNews\\wwwroot\\",
+      "BasePath": "_content/WhatsNews",
+      "RelativePath": "jQuery.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\jQuery.js"
     },
     {
       "Identity": "E:\\Projects\\RealProjects\\Web\\WhatsNews\\WhatsNews\\WhatsNews\\wwwroot\\js\\site.js",

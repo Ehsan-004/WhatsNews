@@ -1,4 +1,4 @@
-﻿@model Article
+﻿@model WhatsNews.ViewModels.ArticleCommentViewModel
 
 @{
     ViewBag.Title = @Model.Title;
@@ -29,25 +29,79 @@
             </div>
             <div class="comments_form">
                 <h5>دیدگاه شما </h5>
-                <form>
+                <form id="frm" method="post" asp-controller="Comments" asp-action="NewComment" asp-route-postId="@Model.Id">
                     <div class="form-row">
                         <div class="col-md-6">
-                            <input type="text" class="form-control" placeholder="نام شما">
+                            <input asp-for="CommentAuthor" type="text" class="form-control" placeholder="نام شما">
                         </div>
                         <div class="col-md-6">
-                            <input type="email" class="form-control" placeholder="ایمیل">
+                            <input asp-for="CommentEmail" type="email" class="form-control" placeholder="ایمیل">
                         </div>
                         <div class="col-md-12">
-                            <textarea class="form-control" placeholder="نظر شما ..."></textarea>
+                            <textarea asp-for="CommentText" class="form-control" placeholder="نظر شما ..."></textarea>
                         </div>
                         <div class="col-md-12">
                             <div class="text-left">
-                                <button class="btn btn-primary">ثبت نظر</button>
+                                @* <button class="btn btn-primary">ثبت نظر</button> *@
+                                <input type="submit" value="ثبت نظر" class="btn btn-primary">
                             </div>
                         </div>
                     </div>
                 </form>
             </div>
+
+            <div class="comments_section mt-5 comments_form">
+                <h5>نظرات کاربران</h5>                
+                @if (Model.Comments.Any())
+                {
+                    @foreach (var comment in Model.Comments)
+                    {
+                        <div class="comment"
+                             style="margin-bottom: 30px; padding: 20px; border: 1px solid #ddd; border-radius: 5px;">
+                            <strong id="comment_author_name">@comment.Author</strong>
+                            <p id="comment_text">@comment.Text</p>
+                        </div>
+                    }
+                }
+            </div>
+            
         </div>
     </div>
 </div>
+
+<script src="jQuery.js"></script>
+
+@section scripts
+{
+<script>
+    var frm = $('#frm');
+    $(document).ready(function(){
+        frm.submit(function (e) {
+            e.preventDefault();
+            var form_data = frm.serialize();
+            $.ajax({
+                type: frm.attr('method'),
+                url: frm.attr('action'),
+                data: form_data,
+                success: function (data) {
+                    var newComment = `<div class="comment" style="margin-bottom: 30px; padding: 20px; border: 1px solid #ddd; border-radius: 5px;">
+                        <strong id="comment_author_name">${data.author}</strong>
+                        <p id="comment_text">${data.text}</p>
+                        </div>`;
+                    $('.comments_section').append(newComment)
+                    frm.trigger('reset');
+                    var lastComment = $('.comments_section .comment').first();
+                    lastComment[0].scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'center'
+                    });
+                },
+                error: function(data){    
+                }
+            });
+            return false;
+        });
+    })
+    
+    </script>
+}

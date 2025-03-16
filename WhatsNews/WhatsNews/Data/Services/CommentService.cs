@@ -24,9 +24,10 @@ public class CommentService : ICommentRepository
         return _context.Comments.FirstOrDefault(c => c.Id == id);
     }
 
-    public Comment GetByPostId(int postId)
+    public ICollection<Comment> GetByPostId(int postId)
     {
-        return _context.Comments.FirstOrDefault(c => c.Id == postId);
+        var article = _context.Articles.FirstOrDefault(a => a.Id == postId);
+        return _context.Comments.Where(c => c.Article == article).ToList();
     }
 
     public bool Create(Comment comment)

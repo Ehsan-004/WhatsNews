@@ -17153,6 +17153,10 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "E:\\Projects\\RealProjects\\Web\\WhatsNews\\WhatsNews\\WhatsNews\\wwwroot\\jQuery.js",
+      "PackagePath": "staticwebassets\\jQuery.js"
+    },
+    {
       "Id": "E:\\Projects\\RealProjects\\Web\\WhatsNews\\WhatsNews\\WhatsNews\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

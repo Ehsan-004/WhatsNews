@@ -9,5 +9,4 @@ public class Comment
     public DateTime Date { get; set; }
     
     public Article Article { get; set; }
-    public int ArticleId { get; set; }
 }
